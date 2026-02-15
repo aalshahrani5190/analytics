@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>بوابة المؤشرات المالية</title>
-
 <style>
 body{
 font-family:Tahoma;
@@ -36,26 +35,6 @@ height:85vh;
 border:none;
 }
 </style>
-
-<script>
-/* ضع روابط Power BI هنا فقط */
-const FINANCE_REPORT  = "ضع_رابط_تقرير_المالية_هنا";
-const PROJECTS_REPORT = "ضع_رابط_تقرير_المشاريع_هنا";
-const BUDGET_REPORT   = "ضع_رابط_تقرير_الميزانية_هنا";
-
-function loadReport(type){
-if(type=='finance'){
-document.getElementById('reportFrame').src = FINANCE_REPORT;
-}
-if(type=='projects'){
-document.getElementById('reportFrame').src = PROJECTS_REPORT;
-}
-if(type=='budget'){
-document.getElementById('reportFrame').src = BUDGET_REPORT;
-}
-}
-</script>
-
 </head>
 
 <body>
@@ -68,13 +47,21 @@ document.getElementById('reportFrame').src = BUDGET_REPORT;
 <button onclick="loadReport('budget')">الميزانية</button>
 </nav>
 
-<!-- أول تقرير يظهر تلقائياً -->
-<iframe id="reportFrame" src=""></iframe>
+<iframe id="reportFrame"
+src="REPORT_LINK">
+</iframe>
 
 <script>
-/* تحميل أول تقرير عند فتح الموقع */
-window.onload = function(){
-document.getElementById('reportFrame').src = FINANCE_REPORT;
+function loadReport(type){
+if(type=='finance'){
+document.getElementById('reportFrame').src="REPORT_LINK";
+}
+if(type=='projects'){
+document.getElementById('reportFrame').src="REPORT_LINK2";
+}
+if(type=='budget'){
+document.getElementById('reportFrame').src="REPORT_LINK3";
+}
 }
 </script>
 
