@@ -3,40 +3,62 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>بوابة المؤشرات التنفيذية</title>
+<title>بوابة مؤشرات الأداء — كلية دجو التطبيقية</title>
 
-<!-- خط عربي (Cairo) من Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- خط عربي مناسب للهوية -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --brand-dark:#0f5132;    /* أخضر غامق */
-    --brand-mid:#1b6f4a;     /* أخضر متوسط */
-    --accent:#c79a2b;        /* ذهبي/عنابي فاتح للـ highlights */
-    --bg:#f3f5f2;            /* خلفية عامة */
+    --brand-dark:#0F5132;    /* أخضر داكن (الرئيسي) */
+    --brand-mid:#1B6F4A;     /* أخضر متوسط */
+    --accent:#C6A75E;        /* ذهبي/مميز */
+    --bg:#F5F7F6;            /* خلفية عامة فاتحة */
     --card:#ffffff;          /* خلفية البطاقات */
-    --muted:#7d7d7d;        /* نص ثانوي */
+    --muted:#6B7280;         /* نص ثانوي */
     --radius:12px;
     --max-width:1200px;
+    --gap:18px;
   }
 
-  html,body { height:100%; }
+  html, body { height:100%; }
   body{
     margin:0;
-    font-family: "Cairo", Tahoma, Arial, sans-serif;
+    font-family: "Tajawal", Tahoma, Arial, sans-serif;
     background:var(--bg);
-    color:#222;
+    color:#111827;
     direction:rtl;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
+  /* Header */
   header.site-header{
     background:var(--brand-dark);
     color:#fff;
-    padding:18px 16px;
+    padding:20px 16px;
     text-align:center;
     font-size:20px;
-    font-weight:600;
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
+    font-weight:700;
+    box-shadow:0 2px 8px rgba(3,30,13,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+  }
+
+  /* شعار (اختياري) */
+  .logo {
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.06);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#fff;
+    font-size:14px;
   }
 
   .container{
@@ -50,7 +72,7 @@
     gap:12px;
     justify-content:center;
     align-items:center;
-    margin:18px 0 8px;
+    margin:var(--gap) 0 8px;
   }
 
   .open-btn{
@@ -61,18 +83,19 @@
     border-radius:8px;
     cursor:pointer;
     font-weight:600;
-    box-shadow:0 4px 10px rgba(11,67,45,.12);
+    box-shadow:0 6px 14px rgba(11,67,45,.10);
     text-decoration:none;
+    transition:transform .14s ease, box-shadow .14s ease;
   }
 
-  .open-btn:hover{ transform:translateY(-2px); }
+  .open-btn:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(11,67,45,.12); }
 
-  /* بطاقة توضيح */
+  /* بطاقة ملاحظة */
   .note{
     max-width:var(--max-width);
     margin:8px auto 18px;
     padding:12px 16px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.9));
+    background:var(--card);
     border-radius:10px;
     border:1px solid rgba(0,0,0,0.04);
     color:var(--muted);
@@ -86,18 +109,18 @@
     border-radius:var(--radius);
     overflow:hidden;
     border:1px solid rgba(0,0,0,0.06);
-    box-shadow:0 8px 22px rgba(8,23,13,0.06);
+    box-shadow:0 12px 30px rgba(8,23,13,0.06);
   }
 
-  /* responsive iframe */
+  /* iframe responsive */
   .report-frame{
     width:100%;
-    height:75vh; /* ارتفاع افتراضي */
+    height:78vh; /* ارتفاع افتراضي */
     border:0;
     display:block;
+    background:var(--card);
   }
 
-  /* Footer small */
   footer{
     text-align:center;
     color:var(--muted);
@@ -105,65 +128,61 @@
     margin:18px 0 40px;
   }
 
-  /* Mobile adjustments */
+  /* small screens */
   @media (max-width:900px){
-    .report-frame{ height:65vh; }
+    .report-frame{ height:64vh; }
     header.site-header{ font-size:18px; padding:14px 10px; }
     .open-btn{ padding:8px 14px; }
     .note{ font-size:13px; padding:10px; }
+    .logo{ width:36px; height:36px; font-size:12px; }
   }
 
 </style>
 </head>
 <body>
 
-<header class="site-header">بوابة المؤشرات التنفيذية</header>
+<header class="site-header">
+  <!-- ضع هنا رابط صورة الشعار إن رغبت -->
+  <!-- مثال: <img src="logo.png" style="height:40px;margin-left:12px" alt="شعار"> -->
+  <span class="logo" aria-hidden="true">دجو</span>
+  <span>بوابة مؤشرات الأداء — كلية دجو التطبيقية</span>
+</header>
 
 <div class="container">
 
-  <div class="top-actions">
-    <!-- زر لفتح التقرير في نافذة/تبويب جديد -->
+  <div class="top-actions" role="navigation" aria-label="إجراءات سريعة">
     <a class="open-btn" id="openNewTab" target="_blank" rel="noopener noreferrer" href="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true&reportCopilotInEmbed=true">
-      افتح لوحة المؤشرات (Power BI)
+      افتح لوحة المؤشرات (في نافذة جديدة)
     </a>
   </div>
 
-  <div class="note">
-    تم تضمين لوحة Power BI أدناه. إن لم تظهر التبويبات أو العناصر التفاعلية داخلياً، اضغط زر "افتح لوحة المؤشرات" لفتحها في نافذة جديدة.
+  <div class="note" role="note">
+    تم تضمين لوحة Power BI أدناه. إذا لم تظهر العناصر التفاعلية داخل الصفحة، افتحها في نافذة جديدة عن طريق الزر أعلاه. يتطلب العرض تسجيل دخول Microsoft/حساب المؤسسة.
   </div>
 
   <div class="report-wrap" role="region" aria-label="لوحة مؤشرات Power BI">
-    <!--
-      استبدل قيمة src بالرابط الوحيد الذي أرسلته (رابط embed لـ Power BI).
-      لاحظ: بعض إعدادات Power BI أو سياسات المؤسسة قد تمنع العمل الكامل داخل iframe.
-      استخدم الزر لفتح التقرير في علامة تبويب جديدة إذا لزم الأمر.
-    -->
     <iframe
       id="reportFrame"
       class="report-frame"
       src="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true&reportCopilotInEmbed=true"
-      title="لوحة مؤشرات الربحية - Power BI"
+      title="لوحة مؤشرات الأداء - Power BI"
       allowfullscreen
       sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
     ></iframe>
   </div>
 
   <footer>
-    © بوابة المؤشرات — عرض مضمَّن من Power BI. تحتاج إلى صلاحية دخول Microsoft / Power BI لعرض التقرير كاملاً.
+    © بوابة مؤشرات الأداء — كل الحقوق محفوظة. تحتاج لصلاحية Microsoft / Power BI لعرض التقرير كاملاً.
   </footer>
 
 </div>
 
 <script>
-  // إذا رغبت: يمكن استخدام هذا السكربت لتحديث src ديناميكياً
-  // حالياً نستخدم رابطاً واحداً موحّداً كما طلبت.
   (function(){
     const embedUrl = "https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true&reportCopilotInEmbed=true";
-    // تعيين الرابط على الزر (في حال تغيّر لاحقاً)
     const openBtn = document.getElementById('openNewTab');
     if(openBtn) openBtn.href = embedUrl;
-
-    // إذا أردت تغيير الiframe لاحقاً برمجياً:
+    // لو احتجت تغيير الـ iframe ديناميكياً:
     // document.getElementById('reportFrame').src = embedUrl;
   })();
 </script>
