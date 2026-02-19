@@ -71,27 +71,27 @@ background:white;
 
 <nav>
 <button onclick="loadReport('finance')">المؤشرات المالية</button>
-<button onclick="loadReport('projects')">المشاريع</button>
-<button onclick="loadReport('budget')">الميزانية</button>
+<button onclick="loadReport('projects')">مؤشرات المشاريع</button>
+<button onclick="loadReport('budget')"> مؤشرات الميزانية</button>
 </nav>
 
 <iframe id="reportFrame"
-src="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f">
+src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true">
 </iframe>
 
 <script>
 function loadReport(type){
 
 if(type=='finance'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f";
+document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
 }
 
 if(type=='projects'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f";
+document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
 }
 
 if(type=='budget'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=defd8305-2125-44b3-805f-035cfdc3b96d&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f";
+document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
 }
 
 }
