@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>بوابة المؤشرات التنفيذية</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>بوابة المؤشرات التنفيذية — عرض كامل</title>
 
 <style>
-html, body {
-    margin:0;
-    padding:0;
-    height:100%;
-    width:100%;
-    overflow:hidden;
-    background:#ffffff;
-    font-family:Tahoma;
-}
+  /* اجعل الصفحة كاملة بدون هوامش */
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #ffffff; /* خلفية بيضاء */
+  }
 
-.powerbi-container {
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-}
+  /* الحاوية التي تملأ الشاشة */
+  .powerbi-full {
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    background: #ffffff;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
 
-.powerbi-container iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
+  /* iframe يملأ كل شيء */
+  .powerbi-full iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: #ffffff;
+  }
+
+  /* خيار: إزالة سلوك التكبير داخل iframe (بعض المتصفحات) */
+  iframe { -webkit-font-smoothing: antialiased; image-rendering: optimizeQuality; }
 </style>
 </head>
-
 <body>
 
-<div class="powerbi-container">
-<iframe 
-title="التقرير العام"
-src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&navContentPaneEnabled=false&filterPaneEnabled=false&actionBarEnabled=false"
-allowfullscreen="true">
-</iframe>
+<div class="powerbi-full">
+  <iframe
+    id="pbiframe"
+    title="التقرير العام - ملء الشاشة"
+    src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&navContentPaneEnabled=false&filterPaneEnabled=false&actionBarEnabled=false"
+    allowfullscreen
+    loading="eager"
+    referrerpolicy="no-referrer"
+  ></iframe>
 </div>
 
 </body>
