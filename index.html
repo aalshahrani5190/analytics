@@ -2,65 +2,132 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>بوابة المؤشرات المالية</title>
 
-<style>
+<!-- خط تاجوال من جوجل -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-/* الخط الرسمي */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+<style>
+:root{
+  --primary:#0f5132;
+  --muted-border:#e5e7eb;
+  --btn-bg:#e8f5e9;
+}
+
+*{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:"Tajawal", Arial, sans-serif;
-background:#ffffff; /* بدون خلفية */
-direction:rtl;
+  margin:0;
+  font-family:"Tajawal", Arial, sans-serif;
+  background:#ffffff;
+  direction:rtl;
+  color:#0b1720;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 /* الهيدر */
 header{
-background:#0f5132;
-color:white;
-padding:18px;
-font-size:30px;
-text-align:center;
-font-weight:700;
-letter-spacing:0.5px;
+  background:var(--primary);
+  color:white;
+  padding:18px;
+  font-size:30px;
+  text-align:center;
+  font-weight:700;
+  letter-spacing:0.5px;
 }
 
 /* شريط الأزرار */
 nav{
-background:#ffffff; /* إزالة الأخضر الخلفي */
-padding:12px;
-text-align:center;
-border-bottom:1px solid #e5e7eb;
+  background:#ffffff;
+  padding:12px;
+  text-align:center;
+  border-bottom:1px solid var(--muted-border);
 }
 
 /* الأزرار */
 nav button{
-margin:6px;
-padding:10px 22px;
-border:1px solid #0f5132;
-background:light green;
-color:#0f5132;
-cursor:pointer;
-font-weight:600;
-border-radius:8px;
-transition:all .2s ease;
+  margin:6px;
+  padding:10px 22px;
+  border:1px solid var(--primary);
+  background:var(--btn-bg); /* تم تصحيح اللون */
+  color:var(--primary);
+  cursor:pointer;
+  font-weight:600;
+  border-radius:8px;
+  transition:all .15s ease;
 }
 
 nav button:hover{
-background:#0f5132;
-color:white;
+  background:var(--primary);
+  color:white;
 }
 
-/* إطار التقرير */
-iframe{
-width:95%;
-height:92vh;
-border:none;
-background:white;
+/* إطار التقرير - نستخدم العنصر iframe المماثل لما ارسلته */
+.report-container{
+  display:flex;
+  justify-content:center;
+  padding:18px;
+  flex:1; /* ليملأ المساحة المتبقية */
 }
 
+/* إحكام استجابة الإطار */
+.responsive-iframe{
+  width:100%;
+  max-width:1140px; /* يتطابق مع width في الكود المرسل */
+  height: auto;
+  aspect-ratio: 1140 / 541.25; /* يحافظ على نسبة الارتفاع الأصلية */
+  border:0;
+  box-shadow:0 6px 18px rgba(3,10,10,0.06);
+  background:white;
+}
+
+/* التذييل الزخرفي */
+footer{
+  text-align:center;
+  padding:14px 10px;
+  border-top:1px solid var(--muted-border);
+  background:#ffffff;
+}
+
+/* الزخرفة واسم المؤلف */
+.signature{
+  display:inline-block;
+  font-family:"Tajawal", "Amiri", serif;
+  font-weight:600;
+  font-size:18px;
+  color:var(--primary);
+  padding:6px 14px;
+  border-radius:28px;
+  position:relative;
+  direction:rtl;
+  letter-spacing:0.6px;
+}
+
+/* زخرفة جانبية باستخدام محتوى يونيكود */
+.signature::before,
+.signature::after{
+  content: "۞";
+  margin:0 8px;
+  color:#b0cdbf;
+  font-size:20px;
+  vertical-align:middle;
+}
+
+/* لمظهر أكثر زخرفة (نمط عربي بسيط) */
+.signature .arabic{
+  display:inline-block;
+  transform:translateY(-1px);
+}
+
+/* استجابة للنافذة الصغيرة */
+@media (max-width:600px){
+  header{font-size:22px;padding:14px}
+  .signature{font-size:16px}
+  .responsive-iframe{aspect-ratio: 16/9}
+}
 </style>
 
 </head>
@@ -70,30 +137,50 @@ background:white;
 <header>بوابة المؤشرات التنفيذية</header>
 
 <nav>
-<button onclick="loadReport('finance')">المؤشرات المالية</button>
-<button onclick="loadReport('projects')">مؤشرات المشاريع</button>
-<button onclick="loadReport('budget')"> مؤشرات الميزانية</button>
+  <button onclick="loadReport('finance')">المؤشرات المالية</button>
+  <button onclick="loadReport('projects')">مؤشرات المشاريع</button>
+  <button onclick="loadReport('budget')">مؤشرات الميزانية</button>
 </nav>
 
-<iframe id="reportFrame"
-src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true">
-</iframe>
+<div class="report-container">
+  <!-- HTML الذي طلبت نسخه: iframe مضمّن -->
+  <iframe
+    class="responsive-iframe"
+    title="التقرير العام"
+    width="1140"
+    height="541.25"
+    src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true"
+    frameborder="0"
+    allowFullScreen="true"
+    loading="lazy"
+  ></iframe>
+</div>
+
+<footer>
+  <!-- الزخرفة العربية لاسمك -->
+  <div class="signature">
+    <span class="arabic">علي الشهراني</span>
+  </div>
+</footer>
 
 <script>
+/* خريطة للتقارير — حدد روابط مختلفة اذا كان لديك تقارير منفصلة.
+   حالياً استخدمت نفس الرابط كقيمة افتراضية (يمكنك تعديله لكل مفتاح).
+*/
+const reports = {
+  finance: "https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true",
+  projects: "https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true",
+  budget: "https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true"
+};
+
 function loadReport(type){
-
-if(type=='finance'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
-}
-
-if(type=='projects'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
-}
-
-if(type=='budget'){
-document.getElementById('reportFrame').src="https://app.powerbi.com/reportEmbed?reportId=f69e0af2-b772-41d9-b749-dce7592a897a&autoAuth=true&ctid=79a057fb-b0d5-44dd-8f90-0bf7151f5c3f&actionBarEnabled=true";
-}
-
+  const url = reports[type] || reports.finance;
+  const frame = document.querySelector('.report-container iframe');
+  if(frame){
+    frame.src = url;
+    // خرج شريط الحالة البسيط للمستخدم (اختياري)
+    // هنا يمكن إضافة تحميل/سبينر إن رغبت
+  }
 }
 </script>
 
